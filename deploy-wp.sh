@@ -8,6 +8,7 @@ SCRIPTPATH=`dirname $SCRIPT`
 pass=`cat $SCRIPTPATH/pass`
 user=`cat $SCRIPTPATH/user`
 echosalt=$SCRIPTPATH/echo-salt.sh
+createdb=$SCRIPTPATH/create-db.sh
 
 if [ -z "$db" ]
 then
@@ -39,6 +40,9 @@ then
     echo 
     exit 1
 fi
+
+$createdb $db
+
 tar -xzvf latest.tar.gz  
 cd wordpress 
 sed s/database_name_here/$db/ wp-config-sample.php \
@@ -46,3 +50,12 @@ sed s/database_name_here/$db/ wp-config-sample.php \
 | sed s/password_here/$pass/  \
 > wp-config.php
 $echosalt >> wp-config.php
+
+cd ..
+sudo mv wordpress /var/www/html/$db
+
+echo SUCCESSFULLY CREATED $db
+echo 
+echo test it by doing:
+echo 
+echo lynx localhost/$db
