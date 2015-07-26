@@ -40,20 +40,12 @@ Here's how you actually use this thing.
 
 # Create the new database. 
 
-This is basically the name of the site or some kind of tag that you use to keep track of the site. 
+Do this is in the dir you downloaded the tarball of wordpress lastest.tar.gz
 
-This script will give you permissions to the user you noted earlier.
+Where
 
-./create-db.sh name-of-new-site
+name-of-new-site is basically the name of the site or some kind of tag that you use to keep track of the site. 
 
-# Unpack and patch it
+This script will give you permissions to the user you noted earlier, unpack and deploy the database, and setup configuration.
 
-./unpack-wp.sh name-of-new-site
-
-# move to new location and test it
-
-mv name-of-new-site /var/www/html/
-
-# test it
-
-lynx localhost/name-of-new-site
+wordpress-tools/deploy-wp.sh name-of-new-site

@@ -1,7 +1,10 @@
 #!/bin/bash
 
-pass=`cat pass`
-user=`cat user`
+SCRIPT=`realpath -s $0`
+SCRIPTPATH=`dirname $SCRIPT`
+pass=`cat $SCRIPTPATH/pass`
+user=`cat $SCRIPTPATH/user`
+
 mysql="sudo mysql --password=$pass -e"
 db=$1
 

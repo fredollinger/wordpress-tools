@@ -41,6 +41,15 @@ then
     exit 1
 fi
 
+if [ -e "/var/www/html/$db" ]
+then
+    echo "Website all ready exists."
+    echo "Not going to over-ride it."
+    echo 
+    exit 1
+fi
+
+
 $createdb $db
 
 tar -xzvf latest.tar.gz  
