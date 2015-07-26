@@ -46,4 +46,14 @@ This script will give you permissions to the user you noted earlier.
 
 ./create-db.sh name-of-new-site
 
-#  
+# Unpack and patch it
+
+./unpack-wp.sh name-of-new-site
+
+# move to new location and test it
+
+mv name-of-new-site /var/www/html/
+
+# test it
+
+lynx localhost/name-of-new-site

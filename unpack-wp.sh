@@ -7,6 +7,7 @@ SCRIPTPATH=`dirname $SCRIPT`
 
 pass=`cat $SCRIPTPATH/pass`
 user=`cat $SCRIPTPATH/user`
+echosalt=$SCRIPTPATH/echo-salt.sh
 
 if [ -z "$db" ]
 then
@@ -31,8 +32,17 @@ then
     exit 1
 fi
 
-#tar -xzvf latest.tar.gz 
+if [ -e "wordpress" ]
+then
+    echo "Directory wordpress all ready exists."
+    echo "Not going to over-ride it."
+    echo 
+    exit 1
+fi
+tar -xzvf latest.tar.gz  
+cd wordpress 
 sed s/database_name_here/$db/ wp-config-sample.php \
 | sed s/username_here/$user/  \
 | sed s/password_here/$pass/  \
 > wp-config.php
+$echosalt >> wp-config.php
